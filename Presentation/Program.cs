@@ -1,7 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
-
+builder.Services.AddSwaggerGen();
 
 
 
@@ -11,6 +11,13 @@ builder.Services.AddOpenApi();
 var app = builder.Build();
 
 app.MapOpenApi();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BookingService API");
+    c.RoutePrefix = string.Empty;
+});
+
 app.UseHttpsRedirection();
 app.UseCors(c => c.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
