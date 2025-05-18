@@ -1,9 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using Presentation.Data.Contexts;
+using Presentation.Data.Repositories;
+using Presentation.Interfaces;
+using Presentation.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 
-
+builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("BookingDBconnection")));
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 
 
 
