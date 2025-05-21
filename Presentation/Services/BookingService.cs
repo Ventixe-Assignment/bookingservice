@@ -34,5 +34,4 @@ public class BookingService(IBookingRepository bookingRepository) : IBookingServ
             ? new BookingResult { Success = true }
             : new BookingResult { Success = false, Error = "Failed to create booking" };
     }
-
 }
