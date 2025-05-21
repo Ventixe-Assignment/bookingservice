@@ -22,4 +22,5 @@ public class BookingsController(IBookingService bookingService) : ControllerBase
             ? Ok()
             : StatusCode(StatusCodes.Status500InternalServerError, "Unable to create booking");
     }
+
 }
