@@ -8,7 +8,7 @@ public class BookingEntity
     [Key]
     public string Id { get; set; } = Guid.NewGuid().ToString();
     public string EventId { get; set; } = null!;
-    public int TicketQuantity { get; set; } = 1;
+    public int TicketQuantity { get; set; }
     public DateTime BookingDate { get; set; }
 
 
