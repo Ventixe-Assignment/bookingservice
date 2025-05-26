@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace Presentation.Data.Repositories;
 
-public class BookingRepository(DataContext context) : BaseRepository<BookingEntity>(context), IBookingRepository
+public class BookingRepository(BookingDataContext context) : BaseRepository<BookingEntity>(context), IBookingRepository
 {
     public override async Task<RepoResult<IEnumerable<BookingEntity>>> GetAllAsync()
     {
