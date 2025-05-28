@@ -4,6 +4,7 @@ using Presentation.Models;
 
 namespace Presentation.Services;
 
+/* CI/CD connected */
 public class BookingService(IBookingRepository bookingRepository) : IBookingService
 {
     private readonly IBookingRepository _bookingRepository = bookingRepository;
