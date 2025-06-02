@@ -3,13 +3,17 @@ using Presentation.Data.Contexts;
 using Presentation.Data.Repositories;
 using Presentation.Interfaces;
 using Presentation.Services;
+using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var keyVaultEndpoint = new Uri(Environment.GetEnvironmentVariable("VaultUri")!);
+builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<BookingDataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
+builder.Services.AddDbContext<BookingDataContext>(x => x.UseSqlServer(builder.Configuration["SqlConnection"]));
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 
@@ -17,7 +21,6 @@ builder.Services.AddScoped<IBookingService, BookingService>();
 
 
 var app = builder.Build();
-
 app.MapOpenApi();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
