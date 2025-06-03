@@ -23,7 +23,7 @@ public class BookingsController(IBookingService bookingService) : ControllerBase
             : StatusCode(StatusCodes.Status500InternalServerError, "Unable to create booking");
     }
 
-    [HttpGet]
+    [HttpGet("all")]
     public async Task<IActionResult> GetBookings()
     {
         var result = await _bookingService.GetAllBookingsAsync();
@@ -33,7 +33,7 @@ public class BookingsController(IBookingService bookingService) : ControllerBase
             : StatusCode(StatusCodes.Status500InternalServerError, "Unable to retrieve bookings");
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("detailed/{id}")]
     public async Task<IActionResult> GetBooking(string id)
     {
         var result = await _bookingService.GetBookingAsync(id);
