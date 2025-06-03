@@ -6,4 +6,5 @@ public class Booking
     public string EventId { get; set; } = null!;
     public DateTime BookingDate { get; set; }
     public int TicketQuantity { get; set; }
+    public BookingOwner? BookingOwner { get; set; }
 }

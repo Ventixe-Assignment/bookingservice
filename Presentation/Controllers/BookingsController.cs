@@ -26,10 +26,20 @@ public class BookingsController(IBookingService bookingService) : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetBookings()
     {
-        var result = await _bookingService.GetBookingsAsync();
+        var result = await _bookingService.GetAllBookingsAsync();
 
         return result.Success
             ? Ok(result.Data)
             : StatusCode(StatusCodes.Status500InternalServerError, "Unable to retrieve bookings");
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetBooking(string id)
+    {
+        var result = await _bookingService.GetBookingAsync(id);
+        if (!result.Success)
+            return NotFound(result.Error ?? "Booking not found");
+
+        return Ok(result.Data);
     }
 }
