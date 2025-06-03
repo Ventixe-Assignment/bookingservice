@@ -35,4 +35,19 @@ public class BookingService(IBookingRepository bookingRepository) : IBookingServ
             ? new BookingResult { Success = true }
             : new BookingResult { Success = false, Error = "Failed to create booking" };
     }
+
+    public async Task<BookingResult<IEnumerable<Booking>>> GetBookingsAsync()
+    {
+        var result = await _bookingRepository.GetAllAsync();
+        var bookings = result.Data?.Select(e => new Booking
+        {
+            Id = e.Id,
+            EventId = e.EventId,
+            TicketQuantity = e.TicketQuantity,
+            BookingDate = e.BookingDate,
+
+        });
+        
+        return new BookingResult<IEnumerable<Booking>> { Success = result.Success, Data = bookings };
+    }
 }

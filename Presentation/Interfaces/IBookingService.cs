@@ -5,5 +5,6 @@ namespace Presentation.Interfaces
     public interface IBookingService
     {
         Task<BookingResult> CreateBookingAsync(BookingRequest request);
+        Task<BookingResult<IEnumerable<Booking>>> GetBookingsAsync();
     }
 }
