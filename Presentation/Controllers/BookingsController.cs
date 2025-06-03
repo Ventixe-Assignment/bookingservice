@@ -29,7 +29,7 @@ public class BookingsController(IBookingService bookingService) : ControllerBase
         var result = await _bookingService.GetAllBookingsAsync();
 
         return result.Success
-            ? Ok(result.Data)
+            ? Ok(result)
             : StatusCode(StatusCodes.Status500InternalServerError, "Unable to retrieve bookings");
     }
 
@@ -40,6 +40,6 @@ public class BookingsController(IBookingService bookingService) : ControllerBase
         if (!result.Success)
             return NotFound(result.Error ?? "Booking not found");
 
-        return Ok(result.Data);
+        return Ok(result);
     }
 }
