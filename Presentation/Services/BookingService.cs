@@ -14,6 +14,7 @@ public class BookingService(IBookingRepository bookingRepository) : IBookingServ
         var bookingEntity = new BookingEntity
         {
             EventId = request.EventId,
+            PackageId = request.PackageId,
             BookingDate = DateTime.Now,
             TicketQuantity = request.TicketQuantity,
             BookingOwner = new BookingOwnerEntity
@@ -61,6 +62,7 @@ public class BookingService(IBookingRepository bookingRepository) : IBookingServ
         {
             Id = result.Data.Id,
             EventId = result.Data.EventId,
+            PackageId = result.Data.PackageId,
             TicketQuantity = result.Data.TicketQuantity,
             BookingDate = result.Data.BookingDate,
             BookingOwner = new BookingOwner
