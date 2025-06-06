@@ -19,7 +19,7 @@ public class BookingsController(IBookingService bookingService) : ControllerBase
 
         var result = await _bookingService.CreateBookingAsync(request);
         return result.Success
-            ? Ok()
+            ? Ok(new { data = new { id = result.Id} })
             : StatusCode(StatusCodes.Status500InternalServerError, "Unable to create booking");
     }
 

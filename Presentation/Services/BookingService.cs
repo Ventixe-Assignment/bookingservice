@@ -33,7 +33,7 @@ public class BookingService(IBookingRepository bookingRepository) : IBookingServ
 
         var result = await _bookingRepository.AddAsync(bookingEntity);
         return result.Success
-            ? new BookingResult { Success = true }
+            ? new BookingResult { Success = true, Id = bookingEntity.Id}
             : new BookingResult { Success = false, Error = "Failed to create booking" };
     }
 
