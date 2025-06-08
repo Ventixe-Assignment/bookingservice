@@ -9,6 +9,7 @@ public class BookingService(IBookingRepository bookingRepository) : IBookingServ
 {
     private readonly IBookingRepository _bookingRepository = bookingRepository;
 
+
     public async Task<BookingResult> CreateBookingAsync(BookingRequest request)
     {
         var bookingEntity = new BookingEntity
